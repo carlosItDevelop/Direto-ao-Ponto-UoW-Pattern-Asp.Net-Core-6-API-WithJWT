@@ -24,7 +24,6 @@ namespace Cooperchip.DiretoAoPonto.UoW.Api.Configurations.Extensions
                 options.SuppressModelStateInvalidFilter = true;
 
             });
-
             return services;
         }
     }
