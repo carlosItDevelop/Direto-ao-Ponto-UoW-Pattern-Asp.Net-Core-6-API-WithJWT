@@ -57,6 +57,8 @@ namespace Cooperchip.DiretoAoPonto.UoW.Api
 
             app.UseHttpsRedirection();
             app.UseRouting();
+
+            app.UseAuthentication();
             app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>

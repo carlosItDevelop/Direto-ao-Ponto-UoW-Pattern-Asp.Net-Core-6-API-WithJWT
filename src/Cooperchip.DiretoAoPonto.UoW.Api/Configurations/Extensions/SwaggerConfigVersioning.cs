@@ -52,7 +52,8 @@ namespace Cooperchip.DiretoAoPonto.UoW.Api.Configurations.Extensions
                 {
                     foreach (var description in provider.ApiVersionDescriptions)
                     {
-                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", description.GroupName.ToUpperInvariant());
+                        options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json", 
+                                                                                             $"Cooperchip/UoW - With JWT:  {description.GroupName.ToUpperInvariant()}");
                     }
                 });
             return app;
