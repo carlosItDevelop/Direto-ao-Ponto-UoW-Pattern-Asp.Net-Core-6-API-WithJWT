@@ -16,8 +16,8 @@ namespace Cooperchip.DiretoAoPonto.UoW.Api.v3.Controllers
         private readonly IMapper _mapper;
 
         public VooController(IVooRepository vooRepository,
-                             IPessoaRepository pessoaRepository,
-                             IMapper mapper)
+                                              IPessoaRepository pessoaRepository,
+                                              IMapper mapper)
         {
             _vooRepository = vooRepository;
             _pessoaRepository = pessoaRepository;
