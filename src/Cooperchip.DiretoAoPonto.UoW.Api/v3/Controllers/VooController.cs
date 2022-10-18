@@ -3,12 +3,10 @@ using Cooperchip.DiretoAoPonto.Data.Repositories.Abstraction;
 using Cooperchip.DiretoAoPonto.Uow.Domain;
 using Cooperchip.DiretoAoPonto.UoW.Api.Controllers;
 using Cooperchip.DiretoAoPonto.UoW.Api.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cooperchip.DiretoAoPonto.UoW.Api.v3.Controllers
 {
-
     [ApiVersion("3.0")]
     [Route("api/v{version:apiVersion}/voos")]
     public class VooController : MainController
