@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Api", "2.Api", "{513D7D8F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Identidade", "1.Identidade", "{D20AF36F-6685-48C1-A05F-9931D47A4AE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cooperchip.DiretoAoPonto.IdentidadeApi", "src\Cooperchip.DiretoAoPonto.IdentidadeApi\Cooperchip.DiretoAoPonto.IdentidadeApi.csproj", "{D44FC071-3BD1-42D0-BE67-F1FEC4BCD1A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{2C9255A8-A404-4904-A6BA-98A232B3819B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C9255A8-A404-4904-A6BA-98A232B3819B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C9255A8-A404-4904-A6BA-98A232B3819B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D44FC071-3BD1-42D0-BE67-F1FEC4BCD1A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D44FC071-3BD1-42D0-BE67-F1FEC4BCD1A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D44FC071-3BD1-42D0-BE67-F1FEC4BCD1A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D44FC071-3BD1-42D0-BE67-F1FEC4BCD1A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +57,7 @@ Global
 		{A9C96F25-7077-4778-B424-9B1EAB7EE197} = {CF1C3BCD-E163-44C5-810A-F54CE2B34B1A}
 		{513D7D8F-ACD9-4025-9432-7FBF334A85FD} = {7D91CEF0-0725-414C-B4C9-2B57D5899170}
 		{D20AF36F-6685-48C1-A05F-9931D47A4AE5} = {7D91CEF0-0725-414C-B4C9-2B57D5899170}
+		{D44FC071-3BD1-42D0-BE67-F1FEC4BCD1A5} = {D20AF36F-6685-48C1-A05F-9931D47A4AE5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C2EE6C0C-CC21-417A-990B-5E86444CDE05}
