@@ -1,12 +1,12 @@
-﻿using Cooperchip.DiretoAoPonto.IdentidadeApi.Models;
+﻿using Cooperchip.DiretoAoPonto.IdentidadeApi.DTOs;
+using Cooperchip.DiretoAoPonto.WebApiCore.Controllers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
 {
-    [ApiController]
     [Route("api/identidade")]
-    public class AuthController : Controller
+    public class AuthController : MainController
     {
 
         private readonly SignInManager<IdentityUser> _signInManager;

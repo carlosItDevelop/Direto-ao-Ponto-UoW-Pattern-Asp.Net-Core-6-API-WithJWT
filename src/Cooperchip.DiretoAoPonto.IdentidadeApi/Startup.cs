@@ -1,5 +1,10 @@
 ﻿using Cooperchip.DiretoAoPonto.IdentidadeApi.Configuration;
+using Cooperchip.DiretoAoPonto.WebApiCore.Extensions;
+using Cooperchip.DiretoAoPonto.WebApiCore.Identidade;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Text;
 
 namespace Cooperchip.DiretoAoPonto.IdentidadeApi
 {
@@ -28,6 +33,10 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi
             services.AddControllers();
             services.AddIdentityConfiguration(Configuration);
             services.AddSwaggerConfiguration();
+
+            // jWT
+            services.AddJwtConfig(Configuration);
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

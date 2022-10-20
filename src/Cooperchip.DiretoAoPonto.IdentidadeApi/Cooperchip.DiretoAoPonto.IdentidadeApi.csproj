@@ -24,6 +24,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>    
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cooperchip.DiretoAoPonto.WebApiCore\Cooperchip.DiretoAoPonto.WebApiCore.csproj" />
+  </ItemGroup>
   
 
 </Project>
