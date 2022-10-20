@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Cooperchip.DiretoAoPonto.Data\Cooperchip.DiretoAoPonto.Data.csproj" />
     <ProjectReference Include="..\Cooperchip.DiretoAoPonto.Uow.Domain\Cooperchip.DiretoAoPonto.Uow.Domain.csproj" />
+    <ProjectReference Include="..\Cooperchip.DiretoAoPonto.WebApiCore\Cooperchip.DiretoAoPonto.WebApiCore.csproj" />
   </ItemGroup>
 
 </Project>

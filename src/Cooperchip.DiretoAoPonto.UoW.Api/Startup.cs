@@ -1,5 +1,6 @@
 ﻿using Cooperchip.DiretoAoPonto.UoW.Api.Configurations.Extensions;
 using Cooperchip.DiretoAoPonto.UoW.Api.Mapper;
+using Cooperchip.DiretoAoPonto.WebApiCore.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
@@ -52,21 +53,8 @@ namespace Cooperchip.DiretoAoPonto.UoW.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
             app.UseSwaggerConfig(provider);
-
-            app.UseHttpsRedirection();
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthentication();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseBasicApplicationBuilder();
         }
-
-
     }
 }

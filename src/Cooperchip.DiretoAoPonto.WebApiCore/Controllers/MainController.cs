@@ -3,7 +3,7 @@
 namespace Cooperchip.DiretoAoPonto.WebApiCore.Controllers
 {
     [ApiController]
-    public class MainController : ControllerBase
+    public abstract class MainController : ControllerBase
     {
     }
 }
