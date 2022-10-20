@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Cooperchip.DiretoAoPonto.Data.FailedRepository;
 using Cooperchip.DiretoAoPonto.Uow.Domain;
-using Cooperchip.DiretoAoPonto.UoW.Api.Controllers;
 using Cooperchip.DiretoAoPonto.UoW.Api.Models;
+using Cooperchip.DiretoAoPonto.WebApiCore.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cooperchip.DiretoAoPonto.UoW.Api.v1.Controllers

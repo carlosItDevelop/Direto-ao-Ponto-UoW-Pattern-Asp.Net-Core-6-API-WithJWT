@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Cooperchip.DiretoAoPonto.Data.Repositories.Abstraction;
 using Cooperchip.DiretoAoPonto.Uow.Domain;
-using Cooperchip.DiretoAoPonto.UoW.Api.Controllers;
 using Cooperchip.DiretoAoPonto.UoW.Api.Models;
+using Cooperchip.DiretoAoPonto.WebApiCore.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,6 +26,7 @@ namespace Cooperchip.DiretoAoPonto.UoW.Api.v3.Controllers
             _mapper = mapper;
         }
 
+        [AllowAnonymous]
         [HttpGet("listar-voos")]
         public async Task<IEnumerable<Voo>> ObterTodos()
         {

@@ -126,7 +126,7 @@ namespace Cooperchip.DiretoAoPonto.UoW.Api.Configurations.Extensions
 
                 if (parameter.In != ParameterLocation.Path && parameter.Schema.Default == null)
                 {
-                    parameter.Schema.Default = new OpenApiString(routeInfo.DefaultValue.ToString());
+                    parameter.Schema.Default = new OpenApiString(routeInfo.DefaultValue?.ToString());
                 }
 
                 parameter.Required |= !routeInfo.IsOptional;

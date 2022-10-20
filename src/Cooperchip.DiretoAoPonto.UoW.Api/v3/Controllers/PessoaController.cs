@@ -2,8 +2,8 @@
 using Cooperchip.DiretoAoPonto.Data.Repositories.Abstraction;
 using Cooperchip.DiretoAoPonto.Data.Repositories.V2.Abstrations;
 using Cooperchip.DiretoAoPonto.Uow.Domain;
-using Cooperchip.DiretoAoPonto.UoW.Api.Controllers;
 using Cooperchip.DiretoAoPonto.UoW.Api.Models;
+using Cooperchip.DiretoAoPonto.WebApiCore.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

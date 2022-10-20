@@ -1,7 +1,13 @@
 ﻿using Cooperchip.DiretoAoPonto.IdentidadeApi.DTOs;
 using Cooperchip.DiretoAoPonto.WebApiCore.Controllers;
+using Cooperchip.DiretoAoPonto.WebApiCore.Extensions;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
 {
@@ -11,12 +17,15 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
 
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly AppSettings _appSettings;
 
-        public AuthController(UserManager<IdentityUser> userManager, 
-                                                SignInManager<IdentityUser> signInManager)
+        public AuthController(UserManager<IdentityUser> userManager,
+                                                SignInManager<IdentityUser> signInManager,
+                                                IOptions<AppSettings> appSettings)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _appSettings = appSettings.Value;
         }
 
         [HttpPost("registrar-usuario")]
@@ -36,7 +45,7 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
             if (result.Succeeded)
             {
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                return Ok(user);
+                return Ok(await GerarToken(usuarioRegistro.Email));
             }
 
             return BadRequest();
@@ -51,13 +60,83 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
 
             if (result.Succeeded)
             {
-                return Ok(result);
+                return Ok(await GerarToken(usuarioLogin.Email));
             }
 
             return BadRequest();
 
         }
 
+        // GerarToken
+        private async Task<UsuarioRespostaLogin> GerarToken(string email)
+        {
+            var user = await _userManager.FindByEmailAsync(email);
+            var claims = await _userManager.GetClaimsAsync(user);
+
+            var identityClaims = await ObterClaimUsuario(claims, user);
+            var encondedToken = CodificarToken(identityClaims);
+
+            return ObterRespostaToken(encondedToken, user, claims);
+        }
+
+
+        private async Task<ClaimsIdentity> ObterClaimUsuario(ICollection<Claim> claims, IdentityUser user)
+        {
+            var userRoles = await _userManager.GetRolesAsync(user);
+
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, ToUnixEpochDate(DateTime.UtcNow).ToString()));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Iat, ToUnixEpochDate(DateTime.UtcNow).ToString(), ClaimValueTypes.Integer64));
+
+            foreach (var userRole in userRoles)
+            {
+                claims.Add(new Claim("role", userRole));
+            }
+
+            var identityClaims = new ClaimsIdentity();
+            identityClaims.AddClaims(claims);
+
+            return identityClaims;
+        }
+
+        private string CodificarToken(ClaimsIdentity identityClaims)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_appSettings.Secret);
+            var token = tokenHandler.CreateToken(new SecurityTokenDescriptor
+            {
+                Issuer = _appSettings.Emissor,
+                Audience = _appSettings.ValidoEm,
+                Subject = identityClaims,
+                Expires = DateTime.UtcNow.AddHours(Convert.ToDouble(_appSettings.ExpiracaoEmHoras)),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            });
+
+            return tokenHandler.WriteToken(token);
+        }
+
+        private UsuarioRespostaLogin ObterRespostaToken(string encondedToken, IdentityUser user, IEnumerable<Claim> claims)
+        {
+            return new UsuarioRespostaLogin
+            {
+                AccessToken = encondedToken,
+                ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiracaoEmHoras).TotalSeconds,
+                UsuarioToken = new UsuarioToken
+                {
+                    Id = user.Id,
+                    Email = user.Email,
+                    Claims = claims.Select(c=> new UsuarioClaim 
+                    {
+                        Type = c.Type, Value = c.Value 
+                    })
+                }
+            };
+        }
+
+        private static long ToUnixEpochDate(DateTime date)
+            => (long)Math.Round((date.ToUniversalTime() - new DateTimeOffset(1970, 1, 1, 0, 0, 0, TimeSpan.Zero)).TotalSeconds);
 
     }
 }

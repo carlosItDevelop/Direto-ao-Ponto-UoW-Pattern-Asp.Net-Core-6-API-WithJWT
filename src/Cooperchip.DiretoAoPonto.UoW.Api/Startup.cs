@@ -1,6 +1,7 @@
 ﻿using Cooperchip.DiretoAoPonto.UoW.Api.Configurations.Extensions;
 using Cooperchip.DiretoAoPonto.UoW.Api.Mapper;
 using Cooperchip.DiretoAoPonto.WebApiCore.Extensions;
+using Cooperchip.DiretoAoPonto.WebApiCore.Identidade;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.Options;
@@ -42,6 +43,8 @@ namespace Cooperchip.DiretoAoPonto.UoW.Api
             services.AddSwaggerConfig();
             
             services.AddAppSettingsConfig(Configuration);
+
+            services.AddJwtConfig(Configuration);
 
             services.AddControllers();
 
