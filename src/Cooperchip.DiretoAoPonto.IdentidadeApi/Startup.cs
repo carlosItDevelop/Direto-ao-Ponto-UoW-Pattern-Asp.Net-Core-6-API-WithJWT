@@ -1,4 +1,7 @@
-﻿namespace Cooperchip.DiretoAoPonto.IdentidadeApi
+﻿using Cooperchip.DiretoAoPonto.IdentidadeApi.Configuration;
+using Microsoft.OpenApi.Models;
+
+namespace Cooperchip.DiretoAoPonto.IdentidadeApi
 {
     public class Startup
     {
@@ -23,6 +26,8 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddIdentityConfiguration(Configuration);
+            services.AddSwaggerConfiguration();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -31,6 +36,12 @@
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Cooperchip Identidade - v1");
+            });
 
             app.UseHttpsRedirection();
 
