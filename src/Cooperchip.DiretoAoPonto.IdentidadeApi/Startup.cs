@@ -1,4 +1,5 @@
 ﻿using Cooperchip.DiretoAoPonto.IdentidadeApi.Configuration;
+using Cooperchip.DiretoAoPonto.IdentidadeApi.Services;
 using Cooperchip.DiretoAoPonto.WebApiCore.Extensions;
 using Cooperchip.DiretoAoPonto.WebApiCore.Identidade;
 
@@ -32,6 +33,9 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi
 
             // jWT
             services.AddJwtConfig(Configuration);
+
+            // UserAdmin
+            services.AddScoped<IUserService, UserService>();
 
         }
 

@@ -117,11 +117,12 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
             return tokenHandler.WriteToken(token);
         }
 
-        private UsuarioRespostaLogin ObterRespostaToken(string encondedToken, IdentityUser user, IEnumerable<Claim> claims)
+        private UsuarioRespostaLogin ObterRespostaToken(string encodedToken, IdentityUser user, IEnumerable<Claim> claims)
         {
+
             return new UsuarioRespostaLogin
             {
-                AccessToken = encondedToken,
+                AccessToken = encodedToken,
                 ExpiresIn = TimeSpan.FromHours(_appSettings.ExpiracaoEmHoras).TotalSeconds,
                 UsuarioToken = new UsuarioToken
                 {

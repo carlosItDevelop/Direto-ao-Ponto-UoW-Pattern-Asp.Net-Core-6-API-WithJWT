@@ -14,11 +14,11 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Configuration
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
-                .AddErrorDescriber<IdentityMessagesPtBr>()
+                //.AddErrorDescriber<IdentityMessagesPtBr>()
+                .AddErrorDescriber<IdentityErrorDescriber>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            //services.;
             return services;
 
         }
