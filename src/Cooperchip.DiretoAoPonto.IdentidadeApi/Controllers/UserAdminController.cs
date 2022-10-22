@@ -1,12 +1,13 @@
 ﻿using Cooperchip.DiretoAoPonto.IdentidadeApi.DTOs;
 using Cooperchip.DiretoAoPonto.IdentidadeApi.Services;
 using Cooperchip.DiretoAoPonto.WebApiCore.Controllers;
+using Cooperchip.DiretoAoPonto.WebApiCore.Identidade.FiltterAuthorizer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/useradmin")]
     public class UserAdminController : MainController
     {
@@ -17,6 +18,7 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
             _userService = userService;
         }
 
+        [ClaimsAuthorize("Usuarios", "Listar")]
         [HttpGet("listar-usuarios")]
         public async Task<IActionResult> ObterUsuarios()
         {
@@ -26,6 +28,7 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
             return Ok(userResponse);
         }
 
+        [ClaimsAuthorize("Claim", "Adicionar")]
         [HttpPost("adicionar-claim")]
         public async Task<IActionResult> AdicionarClaim(string userId, string type, string value)
         {

@@ -78,7 +78,7 @@ namespace Cooperchip.DiretoAoPonto.UoW.Api.Configurations.Extensions
         {
             var info = new OpenApiInfo()
             {
-                Title = "API - Cooperchip",
+                Title = "API - DiretoAoPonto",
                 Version = description.ApiVersion.ToString(),
                 Description = "Esta API faz parte do curso Asp.Net Core 6 - UoW.",
                 Contact = new OpenApiContact() { Name = "Carlos A Santos", Email = "contato.cooperchip@gmail.com" },
@@ -88,7 +88,7 @@ namespace Cooperchip.DiretoAoPonto.UoW.Api.Configurations.Extensions
 
             if (description.IsDeprecated)
             {
-                info.Description += " *** ESTA VERSÃO ESTÁ OBSOLETA ***";
+                info.Description += "  *** ESTA VERSÃO ESTÁ OBSOLETA ***";
             }
 
             return info;

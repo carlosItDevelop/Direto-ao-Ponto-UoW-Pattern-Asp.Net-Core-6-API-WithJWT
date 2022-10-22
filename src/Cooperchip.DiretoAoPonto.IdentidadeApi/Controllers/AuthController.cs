@@ -120,6 +120,18 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
         private UsuarioRespostaLogin ObterRespostaToken(string encodedToken, IdentityUser user, IEnumerable<Claim> claims)
         {
 
+            var filtroType = new List<string>()
+            {
+                new string("sub"),
+                new string("email"),
+                new string("jti"),
+                new string("nbf"),
+                new string("iat"),
+                new string("exp"),
+                new string("iss"),
+                new string("aud")
+            };
+
             return new UsuarioRespostaLogin
             {
                 AccessToken = encodedToken,
@@ -131,7 +143,7 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
                     Claims = claims.Select(c=> new UsuarioClaim 
                     {
                         Type = c.Type, Value = c.Value 
-                    })
+                    }).Where(c=> !filtroType.Contains(c.Type))
                 }
             };
         }
