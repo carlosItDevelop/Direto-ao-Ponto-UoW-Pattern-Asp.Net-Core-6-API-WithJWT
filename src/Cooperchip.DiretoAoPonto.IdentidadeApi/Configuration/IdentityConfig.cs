@@ -14,8 +14,8 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Configuration
 
             services.AddDefaultIdentity<IdentityUser>()
                 .AddRoles<IdentityRole>()
-                //.AddErrorDescriber<IdentityMessagesPtBr>()
-                .AddErrorDescriber<IdentityErrorDescriber>()
+                .AddErrorDescriber<IdentityMessagesPtBr>()
+                //.AddErrorDescriber<IdentityErrorDescriber>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 

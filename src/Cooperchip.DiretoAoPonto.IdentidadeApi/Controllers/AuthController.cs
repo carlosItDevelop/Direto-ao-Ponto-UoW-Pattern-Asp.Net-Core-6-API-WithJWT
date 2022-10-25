@@ -31,7 +31,7 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
         [HttpPost("registrar-usuario")]
         public async Task<IActionResult> Registrar(UsuarioRegistro usuarioRegistro)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid) return CustomResponse(usuarioRegistro);
 
             var user = new IdentityUser
             {
@@ -44,26 +44,38 @@ namespace Cooperchip.DiretoAoPonto.IdentidadeApi.Controllers
 
             if (result.Succeeded)
             {
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                return Ok(await GerarToken(usuarioRegistro.Email));
+                //await _signInManager.SignInAsync(user, isPersistent: false);
+                return CustomResponse(await GerarToken(usuarioRegistro.Email));
             }
 
-            return BadRequest();
+            foreach (var error in result.Errors)
+            {
+                AdicionarErroProcessamento(error.Description);
+            }
+
+            return CustomResponse();
         }
 
         [HttpPost("fazer-login")]
         public async Task<IActionResult> Login(UsuarioLogin usuarioLogin)
         {
-            if (!ModelState.IsValid) return BadRequest();
+            if (!ModelState.IsValid) return CustomResponse(usuarioLogin);
 
             var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
 
             if (result.Succeeded)
             {
-                return Ok(await GerarToken(usuarioLogin.Email));
+                return CustomResponse(await GerarToken(usuarioLogin.Email));
             }
 
-            return BadRequest();
+            if (result.IsLockedOut)
+            {
+                AdicionarErroProcessamento("Usuário temporariamente bloqueado");
+                return CustomResponse();
+            }
+
+            AdicionarErroProcessamento("Usuário ou Senha incorretos.");
+            return CustomResponse();
 
         }
 
