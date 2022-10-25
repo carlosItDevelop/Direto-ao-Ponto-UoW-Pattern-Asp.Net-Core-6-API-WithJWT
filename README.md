@@ -37,7 +37,7 @@ Menor preço da plataforma [Curso DIRETO AO PONTO - UnitOfWork](https://www.udemy
 Já são mais de 200 vídeos [Curso Asp.Net Core Do Zero ao Ninja](https://www.udemy.com/course/curso-de-aspnet-core-mvc-2-2-do-zero-ao-ninja/?referralCode=41B345D11D74CEDD7E57).
 
 
-## Aqui está as configurações do AppSettings do nosso UserSecrets
+## Aqui está as configurações do AppSettings do nosso UserSecrets {Altere o Server e o Database}
 
 ```CSharp
 {
