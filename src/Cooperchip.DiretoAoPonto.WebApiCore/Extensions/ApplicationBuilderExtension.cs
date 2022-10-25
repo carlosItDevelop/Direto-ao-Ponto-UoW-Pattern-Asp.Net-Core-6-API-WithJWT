@@ -8,6 +8,7 @@ namespace Cooperchip.DiretoAoPonto.WebApiCore.Extensions
         {
             app.UseHttpsRedirection();
             app.UseRouting();
+            app.UseCors("Total");
 
             app.UseAuthentication();
             app.UseAuthorization();
