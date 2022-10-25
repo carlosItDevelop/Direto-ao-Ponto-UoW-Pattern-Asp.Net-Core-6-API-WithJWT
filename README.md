@@ -37,6 +37,36 @@ Menor preço da plataforma [Curso DIRETO AO PONTO - UnitOfWork](https://www.udemy
 Já são mais de 200 vídeos [Curso Asp.Net Core Do Zero ao Ninja](https://www.udemy.com/course/curso-de-aspnet-core-mvc-2-2-do-zero-ao-ninja/?referralCode=41B345D11D74CEDD7E57).
 
 
+## Aqui está as configurações do AppSettings do nosso UserSecrets
+
+```CSharp
+{
+      "ConnectionStrings": {
+        "DefaultConnection": "Server=(local)\\SEU-SERVIDOR;Database=SEU-DABASE;Trusted_Connection=true;MultipleActiveResultSets=true;"
+      },
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft.AspNetCore": "Warning"
+        }
+      },
+      "VooSettings": {
+        "Id": "C05ACEB7-1667-4D8F-BD9E-400984609721",
+        "Codigo": "101 - Rio/Miami",
+        "Nota": "Saida as 10:34h. - Horario de Brasilia",
+        "Capacidade": 4,
+        "Disponibilidade": 4
+      },
+      "AllowedHosts": "*",
+      "AppSettings": {
+        "Secret": "ESTACHAVEEMUITOSECRETAENAOPODESERQUEBRADA_mudar_depois",
+        "ExpiracaoEmHoras": 2,
+        "Emissor": "CoopechipDiretoAoPonto",
+        "ValidoEm": "https://localhost"
+      }
+}
+```
+
 ## Reporting security issues and bugs
 
 Security issues and bugs should be reported privately, via email, to Cooperchip (SAC) at <.itdeveloper@gmail.com>. You should receive a response within 72 hours. If for some reason you do not, please follow up via email to ensure we received your original message.
